@@ -7,13 +7,14 @@
 #   By: marasolo <marasolo@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/07/14 22:01:59 by marasolo            #+#    #+#            #
-#   Updated: 2026/07/15 07:06:37 by marasolo           ###   ########.fr      #
+#   Updated: 2026/07/15 08:26:34 by marasolo           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 from abc import ABC, abstractmethod
 from ex0.creatures import Creature
 from ex1.capability import HealCapability, TransformCapability
+from typing import cast
 
 
 class InvalidStrategiesError(Exception):
@@ -47,13 +48,14 @@ class AggressiveStrategy(BattleStrategy):
         return isinstance(creat, TransformCapability)
 
     def act(self, creat: Creature) -> None:
+        c = cast(TransformCapability, creat)
         if not self.is_valid(creat):
             raise InvalidStrategiesError(
                 f"Invalid Creature {creat.name} for this aggressive strategy"
                 )
-        print(creat.transform())
+        print(c.transform())
         print(creat.attack())
-        print(creat.revert())
+        print(c.revert())
 
 
 class DefensiveStrategy(BattleStrategy):
@@ -61,9 +63,10 @@ class DefensiveStrategy(BattleStrategy):
         return isinstance(creat, HealCapability)
 
     def act(self, creat: Creature) -> None:
+        c = cast(HealCapability, creat)
         if not self.is_valid(creat):
             raise InvalidStrategiesError(
                 f"Invalid Creature {creat.name} for this defensive strategy"
                 )
         print(creat.attack())
-        print(creat.heal())
+        print(c.heal())
