@@ -7,7 +7,7 @@
 #   By: marasolo <marasolo@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/07/14 23:16:40 by marasolo            #+#    #+#            #
-#   Updated: 2026/07/14 23:53:28 by marasolo           ###   ########.fr      #
+#   Updated: 2026/07/15 06:52:56 by marasolo           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
@@ -34,9 +34,9 @@ def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
             print()
             print("* Battle *")
             print(creature1.describe())
-            print("vs.")
+            print(" vs.")
             print(creature2.describe())
-            print("now fight!")
+            print(" now fight!")
             try:
                 strategy1.act(creature1)
                 strategy2.act(creature2)
@@ -48,27 +48,27 @@ def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
 def main() -> None:
     print("Tournament 0 (basic)")
     print("[ (Flameling+Normal), (Healing+Defensive) ]")
-    battle([
-        (FlameFactory(), NormalStrategy()),
-        (HealingCreatureFactory(), DefensiveStrategy()),
-    ])
+
+    flame = FlameFactory()
+    normal = NormalStrategy()
+    Aqua = AquaFactory()
+    transform = TransformCreatureFactory()
+    Healing = HealingCreatureFactory()
+    defensive = DefensiveStrategy()
+    aggressive = AggressiveStrategy()
+
+    battle([(flame, normal), (Healing, defensive)])
 
     print()
     print("Tournament 1 (error)")
     print("[ (Flameling+Aggressive), (Healing+Defensive) ]")
-    battle([
-        (FlameFactory(), AggressiveStrategy()),
-        (HealingCreatureFactory(), DefensiveStrategy()),
-    ])
+
+    battle([(flame, aggressive), (Healing, defensive)])
 
     print()
     print("Tournament 2 (multiple)")
     print("[ (Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive) ]")
-    battle([
-        (AquaFactory(), NormalStrategy()),
-        (HealingCreatureFactory(), DefensiveStrategy()),
-        (TransformCreatureFactory(), AggressiveStrategy()),
-    ])
+    battle([(Aqua, normal), (Healing, defensive), (transform, aggressive)])
 
 
 if __name__ == "__main__":
