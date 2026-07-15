@@ -7,13 +7,14 @@
 #   By: marasolo <marasolo@student.42antananarivo.   +#+  +:+       +#+       #
 #                                                  +#+#+#+#+#+   +#+          #
 #   Created: 2026/07/14 22:01:59 by marasolo            #+#    #+#            #
-#   Updated: 2026/07/15 06:31:01 by marasolo           ###   ########.fr      #
+#   Updated: 2026/07/15 07:06:37 by marasolo           ###   ########.fr      #
 #                                                                             #
 # ########################################################################### #
 
 from abc import ABC, abstractmethod
 from ex0.creatures import Creature
 from ex1.capability import HealCapability, TransformCapability
+
 
 class InvalidStrategiesError(Exception):
     pass
